@@ -1,6 +1,6 @@
 # INTRODUCTION
 
-This repo is a modified version of the original ORB-SLAM2 repo by raulmur at https://github.com/raulmur/ORB_SLAM2. In this repo, all the dependencies and library compatibility are fixed, such that it can be compiled and executed without problem on a fresh Ubuntu 20.04 system. Opencv 3.4 is used in this compilation. We hope that this repo will make it easier for anyone who want to have a quick setup and run ORB_SLAM2 algorithm with available public dataset. Ths installation steps to follow is given below:
+This repo is a modified version of the original ORB-SLAM2 repo by raulmur at https://github.com/raulmur/ORB_SLAM2. In this repo, all the dependencies and library compatibility are fixed, such that it can be compiled and executed without problem on a fresh Ubuntu 20.04 system. Opencv 3.4 is used in this compilation. We hope that this repo will make it easier for anyone who want to have a quick setup and run ORB_SLAM2 algorithm with available public dataset. The installation steps to follow is given below:
 
 Preparation
 ```

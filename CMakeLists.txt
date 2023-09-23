@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(ORB_SLAM2)
+cmake_policy(SET CMP0028 NEW)
 
 IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE Release)
@@ -26,9 +27,9 @@ else()
    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++14 support. Please use a different C++ compiler.")
 endif()
 
-LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
+#LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules)
 
-find_package(OpenCV 4.8 QUIET)
+find_package(OpenCV 3.4 QUIET)
 if(NOT OpenCV_FOUND)
    find_package(OpenCV 2.4.3 QUIET)
    if(NOT OpenCV_FOUND)
@@ -36,7 +37,7 @@ if(NOT OpenCV_FOUND)
    endif()
 endif()
 
-find_package(Eigen3 REQUIRED)
+find_package(Eigen3 3 REQUIRED)
 find_package(Pangolin REQUIRED)
 
 include_directories(
@@ -45,6 +46,8 @@ ${PROJECT_SOURCE_DIR}/include
 ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
 )
+
+message(${EIGEN3_INCLUDE_DIR})
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 

@@ -1,3 +1,75 @@
+# INTRODUCTION
+
+This repo is a modified version of the original ORB-SLAM2 repo by raulmur at https://github.com/raulmur/ORB_SLAM2. In this repo, all the dependencies and library compatibility are fixed, such that it can be compiled and executed without problem on a fresh Ubuntu 20.04 system. Opencv 3.4 is used in this compilation. We hope that this repo will make it easier for anyone who want to have a quick setup and run ORB_SLAM2 algorithm with available public dataset. Ths installation steps to follow is given below:
+
+Preparation
+```
+cd ~
+sudo apt update
+sudo apt install git
+sudo apt upgrade
+
+mkdir orbslam
+cd orbslam
+```
+
+Install C++ 11 library
+```
+sudo apt install build-essential
+```
+
+Install Pangolin
+```
+git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
+cd Pangolin/scripts
+
+./install_prerequisites.sh recommended
+
+cd ..
+cmake -B build
+cmake --build build
+cd ..
+```
+
+Install OpenCV
+```
+mkdir opencv
+cd opencv
+
+sudo apt install libgtk-3-dev tesseract-ocr libtesseract-dev hdf5-tools libhdf5-dev libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
+
+git clone -b 3.4 https://github.com/opencv/opencv.git
+git clone -b 3.4 https://github.com/opencv/opencv_contrib.git
+
+mkdir -p build && cd build
+
+cmake -DOPENCV_GENERATE_PKGCONFIG=ON -DWITH_GTK=ON -DOPENCV_EXTRA_MODULES_PATH=../opencv_contrib/modules ../opencv
+
+cmake --build .
+sudo make install
+
+cd ../..
+```
+
+Install ORBSlam2, download sample dataset, and run a monocular example
+```
+git clone https://github.com/ernestkr/ORB_SLAM2.git
+
+cd ORB_SLAM2
+chmod +x build.sh
+
+sudo ./build.sh
+
+cd Examples/Monocular
+mkdir TUMdata && cd TUMdata
+wget https://cvg.cit.tum.de/rgbd/dataset/freiburg1/rgbd_dataset_freiburg1_xyz.tgz
+tar -xvf rgbd_dataset_freiburg1_xyz.tgz
+
+cd ../../..
+
+./Examples/Monocular/mono_tum Vocabulary/ORBvoc.txt Examples/Monocular/TUM1.yaml Examples/Monocular/TUMdata/rgbd_dataset_freiburg1_xyz
+```
+
 # ORB-SLAM2
 **Authors:** [Raul Mur-Artal](http://webdiis.unizar.es/~raulmur/), [Juan D. Tardos](http://webdiis.unizar.es/~jdtardos/), [J. M. M. Montiel](http://webdiis.unizar.es/~josemari/) and [Dorian Galvez-Lopez](http://doriangalvez.com/) ([DBoW2](https://github.com/dorian3d/DBoW2))
 
